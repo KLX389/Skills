@@ -84,3 +84,9 @@ Every judgement carries a reason. The object is kept in all four cases: a docume
 ```
 
 With a judgement of `build`, the initiative is a build candidate and can be ranked. Everything up to here was discovery; everything after is delivery.
+
+**Note on mandate:** For `discretionary`, the business case is cost vs. benefit, and all judgements are available. For `obligatory`, pick the cheapest compliant variant and ship on deadline. For `maintenance`, defer is risky; escalate if you cannot ship. See `mandate-systems.md` for how mandate affects this stage.
+
+## After launch
+
+When this initiative ships, return here after launch to validate the assumptions. See `edge-cases-and-workflows.md` — "Post-launch review: Was the idea wrong or the implementation?" for how to structure the retrospective and close the feedback loop.

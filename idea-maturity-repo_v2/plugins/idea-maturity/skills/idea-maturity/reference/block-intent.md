@@ -98,3 +98,5 @@ For `obligatory` demand the intent is given in advance: the obligation is the go
 ```
 
 When these hold, **the briefing is complete**. It has an owner and a handover date, and it stands on its own even if no hypothesis is ever formed. Only now does stage 4 begin.
+
+**Note on mandate:** For `discretionary`, intent is discovered in conversation. For `obligatory`, intent is given in advance (the obligation is the goal). For `maintenance`, intent is risk mitigation (return to normal). See `mandate-systems.md` for how mandate affects this stage.

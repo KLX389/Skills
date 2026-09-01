@@ -24,7 +24,7 @@ Worth threshold: value above which the effort is justified; derived from the pro
 
 Null variant: what happens if nothing is done; the comparison baseline for any business case.
 
-Mandate: whether an initiative is chosen, obliged, or operationally necessary; decides which stages apply.
+Mandate: whether an initiative is chosen, obliged, or operationally necessary; decides which stages apply. Three types: `discretionary` (internal choice), `obligatory` (external requirement), `maintenance` (operational necessity). See `mandate-systems.md` for full details.
 
 ## Goals and intent
 

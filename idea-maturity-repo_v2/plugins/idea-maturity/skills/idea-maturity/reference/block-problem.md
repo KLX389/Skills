@@ -71,6 +71,8 @@ Chains longer than about five links usually contain a second problem. Split them
 
 The signal is a chain that branches, or a user problem that maps to two unrelated business metrics. Splitting early is cheap; splitting after stage 3 means redoing the intent.
 
+**See also:** `edge-cases-and-workflows.md` — "Split: One problem or several?" for the full workflow, including how to create separate objects and track the relationship.
+
 ## Probing questions
 
 - "Who observed that, and by what exactly?"
@@ -92,3 +94,5 @@ The signal is a chain that branches, or a user problem that maps to two unrelate
 ```
 
 If the weakest link is `unknown`, the briefing pauses here until it is measured. Otherwise route to stage 2, where that link is what gets sized.
+
+**Note on mandate:** If the mandate is `obligatory`, stage 1 is omitted; the obligation replaces the evidence. If the mandate is `maintenance`, the problem is reduced to operational risk instead of user problem. See `mandate-systems.md` for how mandate affects this stage.

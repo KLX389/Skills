@@ -79,3 +79,13 @@ Without a starting value no effect can ever be proven. Stage 3 will be unbuildab
 ```
 
 If reach and severity together do not justify any effort, stop here and say so. Killing an initiative at stage 2 costs a measurement; killing it after stage 5 costs a quarter.
+
+**Note on mandate:** For `obligatory`, sizing means clarifying the scope of the obligation (who and what). For `maintenance`, sizing means risk and frequency of the operational problem. For `discretionary`, full four-point sizing. See `mandate-systems.md` for how mandate affects this stage.
+
+## What if measurement contradicts stage 1?
+
+If sizing the problem reveals that the stage 1 causal chain was incomplete or incorrectly rated, **rollback to stage 1.** Mark stage 2 work as `work_at_risk` and route back to problem.
+
+Example: "The funnel shows drop-off at step 3 is 34%. But interviews never mentioned step 3 — they all complained about step 1. The causal chain is broken."
+
+See `edge-cases-and-workflows.md` — "Rollback: When to change the blocking stage" for the full procedure.

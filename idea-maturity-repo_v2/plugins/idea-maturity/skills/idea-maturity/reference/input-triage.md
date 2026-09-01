@@ -31,6 +31,8 @@ The mandate decides which stages apply at all. Sending a regulatory deadline thr
 
 Obligatory demand does not compete with discretionary demand. It is deducted in advance as a capacity block with a deadline; what remains gets prioritized. Otherwise every deadline beats every idea and prioritization becomes a formality.
 
+**See also:** `mandate-systems.md` for the full decision tree, recognizing each mandate type, common confusions, and workflows. Read this when mandate classification is unclear or when comparing multiple initiatives.
+
 ## Form — determines the *how*
 
 | Value | Recognisable by | Entry point |
@@ -113,3 +115,9 @@ Ending on the first question of the next stage keeps the pass moving instead of 
 - [ ] Expectation stated, ending with the first question of the entry stage
 - [ ] Nothing reformulated yet
 ```
+
+## Special cases
+
+**Re-triage (later pass on a known initiative):** See `edge-cases-and-workflows.md` — "Re-triage: Later pass on a known initiative". Do not rebuild the gap card; update it with a dated note of what changed.
+
+**Assignment with uncertain mandate:** If an `assignment` arrives and the mandate is unclear (is this obligatory or discretionary?), ask before proceeding. The mandate determines which stages apply. See `edge-cases-and-workflows.md` — "Lost entry point: Unknown blocks recovery".

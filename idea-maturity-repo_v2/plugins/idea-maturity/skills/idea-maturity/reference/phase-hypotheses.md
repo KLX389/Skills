@@ -88,6 +88,8 @@ Effort here is **rough and only for ordering**. Estimating precisely would be wa
 
 Effort alone does not sort the list. A cheap hypothesis resting on `assumed` is not better than an expensive one resting on `validated` — it is cheaper *and* less certain. Both values are read together.
 
+**If two hypotheses are equally strong,** apply the tie-breaker sequence: confidence first, effort next, riskiest assumption, reversibility, candidate type. See `edge-cases-and-workflows.md` — "Tie-breaker: Equal-strength hypotheses".
+
 ## Build candidate or test candidate
 
 ```
@@ -113,3 +115,5 @@ This is the rule that stops well-formatted guesses from being scheduled.
 ```
 
 If the chosen path is a test candidate, stop here: the next action is the test. Otherwise route to stage 5 for the chosen hypothesis only.
+
+**Note on mandate:** For `discretionary`, hypotheses compare full solution space. For `obligatory`, hypotheses compare only the "how" — multiple compliant paths, not whether to comply. For `maintenance`, hypotheses compare paths to system stability. See `mandate-systems.md` for how mandate affects this stage.
