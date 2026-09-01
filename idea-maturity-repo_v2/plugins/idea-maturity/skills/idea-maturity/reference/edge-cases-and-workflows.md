@@ -157,8 +157,8 @@ Blocker discovered: The business metric (drop-off rate) was assumed, not validat
 We asked: "Do users abandon because of price confusion?" But we don't have evidence.
 This is stage 1 — the causal chain is incomplete.
 
-Status (after rollback): stage 2 complete · stage 1 problem blocking (reopened)
-Work at risk: stage 3 intent output exists but rests on `assumed` evidence
+Status (after rollback): stage 0 input complete · stage 1 problem blocking (reopened)
+Work at risk: previous stage 2 sizing and stage 3 intent output rest on a reopened stage 1 chain
 
 Next action: Validate the causal link via [method], owner [name], due [date]
 ```

@@ -10,6 +10,25 @@ Because a skill's `description` controls when Claude triggers it, treat descript
 - **minor** — new stages, reference files or fields; existing behavior preserved
 - **patch** — wording, typos, clarifications with no behavioral effect
 
+## [0.3.0]
+
+### Changed
+- Narrowed the skill trigger description so ordinary implementation requests do not invoke the skill unless maturity, evidence, readiness, or prioritization is in question
+- Clarified that one primary stage file is worked per pass while support references may be read for mandate, schema, facilitation, edge cases, examples, or terminology
+- Made first-pass stage 0 behavior explicit: record and classify before reformulation, then route to the entry stage
+- Separated user-near targets from worth thresholds in stage 3
+- Clarified that `candidate_type: build` in stage 4 means eligible for stage 5, not approved for implementation
+- Made required `unknown` values in stage 2 remain blocking until measurement or explicit non-convertible decision
+
+### Added
+- Codex-compatible plugin manifest under `plugins/idea-maturity/.codex-plugin/plugin.json`
+- Local marketplace entry under `.agents/plugins/marketplace.json`
+- Repository contract test for packaging, routing references, enums, and core methodology invariants
+
+### Fixed
+- README repository layout and validation commands now match the actual 0.3.0 file structure
+- Solution-free briefing rule now permits trace fields to quote the original solution without contaminating active stage 1-3 fields
+
 ## [0.2.0]
 
 ### Changed — breaking
