@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zinsser Style Guardian"
+  short_description: "Tighten non-fiction prose"
+  default_prompt: "Use $zinsser-style-guardian to make this text clearer, tighter, more active, and more human."
