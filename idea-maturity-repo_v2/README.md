@@ -1,100 +1,145 @@
-# Product Thinking Skills
+# Idea Maturity
 
-Agent Skills for assessing, maturing and prioritizing product ideas.
+`idea-maturity` is a product-thinking skill for assessing, maturing, and prioritizing product initiatives.
 
-Skills are folders of instructions that Claude loads when they become relevant. This repository holds one so far.
+It turns raw input - an idea, feature request, research finding, complaint, backlog item, or assignment - into a structured maturity object. The output names the current status, the one blocking gap, and the cheapest next action.
 
-## `idea-maturity`
+## What It Does
 
-Determines **which stage an idea has reached**, works the one stage that blocks it, and produces the figures needed to rank it against other ideas.
+There are always more ideas than teams can build. Prioritization by gut feel appears when initiatives cannot be compared: one has a measured baseline, the next has an anecdote, and both are discussed as if they were equally mature.
 
-There are always more ideas than people to build them, so prioritization is unavoidable. Prioritization by gut feel is what happens when ideas cannot be compared — and they cannot be compared when one has a measured baseline and the next has an anecdote. Maturity is what makes them comparable.
+This skill keeps maturity visible. It separates:
 
-**The five stages**
+- what has been evidenced
+- what has merely been assumed
+- what is already solution work but rests on open lower stages
+- what is ready to test, build, defer, or drop
+
+It is not a scoring model. The skill never multiplies rough impact, effort, and confidence into one number. Initiatives are grouped by stage first and compared only within the same maturity group.
+
+## Stage Sequence
 
 | # | Stage | Question it settles |
 |---|---|---|
-| 1 | Problem exists | Does the problem exist, or do we only perceive it? |
-| 2 | Problem is relevant | How big is it — reach, frequency, severity, baseline? |
-| 3 | Solution fits | Does *this* solution solve *this* problem, and why this one? |
-| 4 | It can be built | Technically, legally, organizationally? |
-| 5 | Success is recognizable | Would we recognize whether it worked — and is this idea worth doing before the others? |
+| 0 | Input | What arrived, and which mandate applies? |
+| 1 | Problem | Whose problem is this, and what evidence supports it? |
+| 2 | Relevance | How big is the problem: reach, frequency, severity, baseline, value? |
+| 3 | Intent | What should be true instead, and how will success be recognized? |
+| 4 | Hypotheses | Which solution paths could reach that fixed intent? |
+| 5 | Worth | Is the chosen path worth its effort against the best alternative? |
 
-You go bottom-up and stop at the first stage you cannot honestly affirm. That is the status. Work above that stage does not raise it; it is work at risk.
+Stages 1-3 form the briefing. The briefing is solution-free and stands on its own. Only after it is complete does the skill compare solution hypotheses.
 
-Every claim carries a rating — `assumed` / `reported` / `observed` / `validated` — and the weakest link of the causal chain sets the confidence of the whole idea.
+## Core Rules
 
-**What it is not:** a scoring model. The comparison figures are shown side by side, never multiplied into a single number. Two rough estimates and an inherited rating do not become precise by being multiplied.
-
-### Language
-
-The skill responds in the language of the conversation. Output templates ship with German field labels and are translated at runtime.
+- Stop at the first stage that cannot honestly be affirmed.
+- Work exactly one primary stage per pass.
+- Treat existing work above the blocking stage as `work_at_risk`.
+- Give every material claim an evidence rating: `unknown`, `assumed`, `reported`, `observed`, or `validated`.
+- Inherit confidence from the weakest link in the causal or effect chain.
+- Never invent numbers. Write `unknown -> measure first` and attach owner and due date.
+- Keep solutions out of stages 1-3 except in trace fields such as `input.raw_statement` and `problem.reformulated_from`.
+- Compare discretionary, obligatory, and maintenance initiatives differently; do not rank obligatory work against discretionary upside.
 
 ## Install
 
-### Claude Code
+### Codex Plugin
 
+The package contains a Codex-compatible local plugin manifest:
+
+```text
+idea-maturity-repo_v2/
+  .agents/plugins/marketplace.json
+  plugins/idea-maturity/.codex-plugin/plugin.json
 ```
-/plugin marketplace add KLX389/Skills
-/plugin install idea-maturity@klx389-skills
+
+From a local checkout, add the package root as a marketplace, then install `idea-maturity` through the Codex plugin flow.
+
+### Direct Skill Upload
+
+For environments that accept a standalone skill folder, upload or zip:
+
+```text
+plugins/idea-maturity/skills/idea-maturity
 ```
 
-### Claude.ai
-
-Zip the folder `plugins/idea-maturity/skills/idea-maturity` and upload it under Settings → Capabilities → Skills. See [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
-
-### Claude API
-
-Upload the skill folder via the Skills API. See the [Skills API quickstart](https://docs.claude.com/en/api/skills-guide).
+The skill payload itself is Markdown only: no runtime scripts, no network calls, no filesystem writes.
 
 ## Use
 
-Once installed, no invocation is needed — describe an idea and ask where it stands:
+Once installed, describe an initiative and ask for maturity, readiness, prioritization, or missing evidence:
 
-> "Wir haben im Buchungsflow beobachtet, dass die Preisdarstellung inkonsistent ist. Aus 8 Interviews wissen wir, dass Nutzer das irritiert. Wir haben ein Konzept dafür — können wir das nächstes Quartal einplanen?"
+> "Wir haben im Buchungsflow beobachtet, dass die Preisdarstellung inkonsistent ist. Aus 8 Interviews wissen wir, dass Nutzer das irritiert. Wir haben ein Konzept dafür - können wir das nächstes Quartal einplanen?"
 
-The skill names the stage, the one blocking gap, and the cheapest next action.
+The skill should answer with the current status, the blocking stage, the relevant fields for that stage, and one concrete next action.
 
-Other phrasings that trigger it: *where does this stand*, *is this ready to build*, *what's missing*, *how do we prioritize these*, *sort this backlog by readiness*.
+Common trigger phrasing:
 
-## Repository layout
+- "Where does this stand?"
+- "Is this ready to build?"
+- "What evidence is missing?"
+- "Prioritize this backlog by readiness."
+- "Was the idea wrong, or did the implementation fail?"
 
+## Repository Layout
+
+```text
+idea-maturity-repo_v2/
+  .agents/
+    plugins/
+      marketplace.json
+  plugins/
+    idea-maturity/
+      .codex-plugin/
+        plugin.json
+      skills/
+        idea-maturity/
+          SKILL.md
+          reference/
+            input-triage.md
+            block-problem.md
+            block-relevance.md
+            block-intent.md
+            phase-hypotheses.md
+            phase-worth.md
+            template-spec.md
+            mandate-systems.md
+            edge-cases-and-workflows.md
+            facilitation.md
+            example-briefing.md
+            glossary.md
+  tests/
+    test_skill_contract.py
+  CHANGELOG.md
+  README.md
 ```
-.claude-plugin/
-  marketplace.json          plugin registry — required at repo root
-plugins/
-  idea-maturity/
-    .claude-plugin/
-      plugin.json           plugin metadata
-    skills/
-      idea-maturity/
-        SKILL.md            router: classify, then route
-        reference/
-          stage-1-problem-evidence.md
-          stage-2-problem-size.md
-          stage-3-solution-fit.md
-          stage-4-buildability.md
-          stage-5-targets-and-priority.md
-          facilitation.md
-          example-card.md
-          glossary.md
-CHANGELOG.md
+
+`SKILL.md` contains shared routing and operating rules. Each primary stage file contains the detailed workflow for that stage. Support references are loaded only when their case applies.
+
+## Validation
+
+Run the skill validator:
+
+```bash
+python3 /Users/alexkeil/.codex/skills/.system/skill-creator/scripts/quick_validate.py plugins/idea-maturity/skills/idea-maturity
 ```
 
-`glossary.md` carries one-line definitions of the vocabulary used across all stages, with sources named. `SKILL.md` holds only what is needed on every run. Exactly one stage file is loaded per pass — the one that is blocking. This keeps the context small and prevents the wall of questions the skill exists to avoid.
+Run the repository contract tests:
 
-## Contains no executable code
+```bash
+python3 tests/test_skill_contract.py
+```
 
-Skills can run arbitrary code in Claude's environment, so read one before installing it. This one is markdown only: no scripts, no network calls, no filesystem writes.
+If plugin metadata changed, also validate the plugin manifest:
+
+```bash
+python3 /Users/alexkeil/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/idea-maturity
+```
 
 ## Versioning
 
-Version numbers live in `plugin.json` and `marketplace.json` and must be bumped together. A skill's `description` controls when Claude triggers it, so changing it changes behavior — see `CHANGELOG.md` for how that maps to SemVer.
-
-## Contributing
-
-Issues and pull requests welcome. For changes to the stages themselves, please include the reasoning: which real situation the current wording handled badly.
+The plugin version lives in `plugins/idea-maturity/.codex-plugin/plugin.json`. Changes to `SKILL.md` frontmatter description are behavioral because they change automatic invocation. Treat them accordingly in `CHANGELOG.md`.
 
 ## License
 
-Apache-2.0. Add the licence text via GitHub's licence picker so the wording is the canonical one.
+Apache-2.0.

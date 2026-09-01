@@ -1,244 +1,112 @@
 ---
 name: idea-maturity
-description: Turns raw input — an idea, feature request, research finding, complaint, or assignment — into a structured briefing with a documented problem, its size, and an intent statement with success metrics, then into compared solution paths and a build-or-test judgement. Use whenever someone presents something to work on and the real question is whether to do it, where it stands, what evidence is missing, or whether it is ready. Applies especially when a request names a solution but no problem; when someone says research proves there is a problem but cannot say how big it is or how many users it affects; when ideas are prioritized by gut feel; when a backlog needs sorting by readiness; and when a group needs a shared, non-political way to assess initiatives together. Also applies retrospectively when something shipped and it is unclear whether the idea was wrong or the implementation was.
+description: Assess product ideas, feature requests, research findings, complaints, assignments, or backlog items when the user asks whether to do them, where they stand, what evidence is missing, how to prioritize them, or whether shipped work failed by idea or implementation. Use for product discovery and initiative readiness; do not use for ordinary implementation requests unless readiness, evidence, problem framing, or prioritization is in question.
 ---
 
 # Idea Maturity
 
-Turn raw input into a briefing, the briefing into compared solution paths, and those into a judgement. Two jobs on every pass: **classify**, then **route**.
+Turn raw initiative input into a maturity object, then into one concrete next action. On every pass, do two jobs: classify the material and route to the first stage that cannot honestly be affirmed.
 
----
+## Use When
 
-## ⚡ Quick Start
+Use this skill when the user asks about product maturity, readiness, prioritization, missing evidence, or post-launch learning. It is especially relevant when a request names a solution before the problem, cites research without sizing the problem, asks to sort a backlog by readiness, or needs a neutral workshop structure.
 
-**What this is:** A six-stage test sequence that takes initiatives from raw input → evidenced problem → sized impact → fixed intent → compared solutions → go/test/defer/drop judgement.
+Do not use it for a direct delivery task whose problem, priority, and acceptance criteria are already settled, unless the user asks to challenge readiness.
 
-**When to use it:**
-- Someone presents an idea or feature request — you need to know *where it stands*
-- A backlog needs sorting by readiness, not gut feel
-- The request names a solution but the problem is unnamed
-- Claims exist without evidence or without size ("research proves it" but you don't know how big)
-- A group needs a non-political way to assess multiple initiatives together
+## Stage Map
 
-**The core loop:**
-1. Classify the input (form: observation / complaint / problem / solution / hypothesis / assignment)
-2. Route to the blocking stage (the one that cannot be affirmed)
-3. Work only that stage (read one file, ask 1–3 questions, move on)
-4. Repeat on next input — one stage per pass
-
-**First question?** What happens if you do not build what was just proposed?
-
----
-
-## 📍 Navigation & Routing
-
-**Blocking stage determines your route.** Find your stage below, read its file, ask the gaps.
-
-| Stage | Blocking Question | Read This | Output |
-|-------|-------------------|-----------|--------|
-| **0** | What is this? | `input-triage.md` | Gap card + entry stage |
-| **1** | Do we know the problem? | `block-problem.md` | Reformulated problem + causal chain |
-| **2** | How big is it? | `block-relevance.md` | Reach, frequency, severity, baseline, problem value |
-| **3** | What should it be instead? | `block-intent.md` | Intent statement + target + worth threshold |
-| **4** | What could get us there? | `phase-hypotheses.md` | 2+ paths vs. null variant + riskiest assumption |
-| **5** | Is the path worth it? | `phase-worth.md` | Effort, cost, benefit, confidence, judgement |
-
-**One rule:** Read exactly one stage file per pass. Work above the blocking stage does not raise the status.
-
-**Also available** (read only when needed):
-- `template-spec.md` — field names, enums, ownership rules (needed for structured output)
-- `mandate-systems.md` — decision tree and stage-by-stage impact of each mandate type (read in stage 0 or when mandate is unclear)
-- `example-briefing.md` — worked pass showing how blunt the verdict should be
-- `glossary.md` — 63 sourced definitions (read alongside when a term is disputed)
-- `facilitation.md` — session sequence and group dynamics (read for backlog reviews or workshops)
-- `edge-cases-and-workflows.md` — split, re-triage, rollback, tie-breaker, post-launch, and lost-entry-point scenarios
-
----
-
-## Why This Exists
-
-Prioritization by gut feel is what happens when initiatives **cannot be compared** — and they cannot be compared when one has a measured baseline and the next has an anecdote.
-
-**Initiatives at the same stage compete on impact; initiatives at different stages do not compete** — the lower one needs evidence, not a decision. Judging a stage 1 initiative against a stage 4 initiative and concluding the first is weak is the most common prioritization error.
-
-Not every initiative should reach stage 5. The funnel narrows on purpose: killed at stage 2 it costs a measurement, killed after launch it costs a quarter.
-
-## The Test Sequence
-
-Not a causal chain but a **test sequence**: each stage falls away if the previous one does not hold.
-
-| | Stage | Question | Falls away if |
+| Stage | Blocking question | Primary reference | Output |
 |---|---|---|---|
-| **0** | Input | What is this, does the ladder apply? | — |
-| **1** | Problem | Whose problem, and do we know it? | there is no problem |
-| **2** | Relevance | How big is it? | it is too small |
-| **3** | Intent | How should it be instead, and how would we know? | we cannot say what we want |
-| **4** | Hypotheses | What could get us there? | no path leads there |
-| **5** | Worth | Is the path worth it, and can we take it? | effort exceeds benefit |
+| 0 Input | What arrived, and does the ladder apply? | `reference/input-triage.md` | finding, mandate, form, gap card, entry stage |
+| 1 Problem | Whose problem is this, and do we know it? | `reference/block-problem.md` | user problem, business problem, causal chain, confidence |
+| 2 Relevance | How big is it? | `reference/block-relevance.md` | reach, frequency, severity, baseline, problem value |
+| 3 Intent | What should be true instead? | `reference/block-intent.md` | solution-free intent, target, indicators, guardrails, stop rule |
+| 4 Hypotheses | What could get us there? | `reference/phase-hypotheses.md` | at least two paths plus null variant, effect chains, test/build candidates |
+| 5 Worth | Is the chosen path worth it? | `reference/phase-worth.md` | binding effort, business case, opportunity cost, judgement |
 
-### Briefing = Stages 1–3
+Read exactly one primary reference per pass: the blocking stage's file. You may also read a support reference when it is directly relevant:
 
-**Stages 1–3 together form the briefing** — the structured, complete version of what arrived as input. It is a deliverable in its own right, with an owner and a handover, not a warm-up for stage 4.
+- `reference/template-spec.md` for structured output, enum values, field ownership, or external handoff.
+- `reference/mandate-systems.md` when mandate classification is unclear or multiple mandate types are compared.
+- `reference/facilitation.md` for workshops and backlog reviews.
+- `reference/edge-cases-and-workflows.md` for split, re-triage, rollback, tie-breaker, lost entry point, or post-launch review.
+- `reference/example-briefing.md` when tone or output shape is uncertain.
+- `reference/glossary.md` when terminology is disputed.
 
-A complete briefing allows solutions to be compared. Without it, you are advocating for artefacts, not evaluating them.
+## Operating Rules
 
-### Status vs. Work-at-Risk
+Work bottom-up. The status is the highest fully completed stage, not the highest stage someone has worked on. Material above the blocking stage is `work_at_risk` and must be labelled as such.
 
-**The status** is the highest fully completed stage, not the highest anyone has worked on. Work above the blocking stage does not raise it; it is work at risk.
+On the first encounter with an initiative, run stage 0 before any reformulation. Record the raw statement verbatim, classify mandate and form, run the five-minute K.O. check, create the gap card, and route to the entry stage. If the user already provided enough evidence for the entry stage, work that one primary stage in the same pass; otherwise end with the first question for that stage.
 
-If a concept exists at stage 4 but stage 2 is open, the status is stage 1 — blocking. Work at stage 4 is provisional.
+On later passes, do not rebuild stage 0. Update the existing object and gap card, then work the current blocking stage.
 
----
+One pass should advance or clarify one stage. Do not fill downstream stages just because material exists there.
 
-## The Core Principles
+## Mandates
 
-### Two orderings carry the structure
+Stage 0 sets the mandate:
 
-- **Intent before hypotheses.** The goal is derived from problem and relevance, never from the solution. Otherwise the goal gets worded so the existing solution fits.
-- **Target value before effort.** The worth threshold is fixed before anyone knows the cost. Otherwise the target adapts to the effort.
+- `discretionary`: internally chosen value creation; full evidence ladder applies.
+- `obligatory`: law, contract, platform, audit, or security requirement; stage 1 is not applicable, and stages 4-5 compare compliant paths.
+- `maintenance`: operational necessity; stages 1-3 use risk and return-to-normal framing.
 
-### Evidence rating
+Obligatory work is scheduled as a capacity block with a deadline before discretionary initiatives are ranked. Maintenance work escalates when deferral increases operational risk.
 
-Every claim carries one. Applies from stage 1 onwards and propagates to stage 5.
+## Evidence And Confidence
+
+Every material claim from stage 1 onward carries one evidence rating:
 
 | Rating | Meaning |
 |---|---|
-| `unknown` | Nobody checked — a gap |
-| `assumed` | Someone finds it plausible — a bet |
-| `reported` | Someone said it, secondhand |
-| `observed` | Seen firsthand, qualitatively |
-| `validated` | Data confirms it and the qualitative picture agrees |
+| `unknown` | nobody checked; this is a gap |
+| `assumed` | plausible, but not observed |
+| `reported` | someone said it or a secondhand source records it |
+| `observed` | seen firsthand, usually qualitative |
+| `validated` | quantitative data and qualitative picture agree |
 
-A benchmark ("competitors do it") never rises above `assumed`. Most material sits at `reported`, and saying so is half the work.
+Each claim needs a concrete source and method. A benchmark never rises above `assumed` for your own users. Interviews are normally `reported` unless the team directly observed the behavior.
 
-### Confidence is inherited, never raised
+Confidence is inherited from the weakest rated link in the current causal or effect chain. Later stages can lower confidence, never raise it above the earlier chain. A well-worked solution cannot repair a weakly evidenced problem.
 
-**Confidence is the rating of the weakest link in the causal chain.** A later stage can lower it, never raise it — a well-worked solution cannot improve the evidence for a weakly evidenced problem.
+## Briefing Before Solution
 
-If stage 1 rests on `assumed` evidence, the entire initiative has confidence `assumed`. Stage 4 cannot fix that; it can only acknowledge it.
+Stages 1-3 are the briefing. They are solution-free by default.
 
----
+Allowed trace exceptions: `input.raw_statement`, `problem.reformulated_from`, and explicit `work_at_risk` notes may quote the proposed solution because traceability matters. No active problem, relevance, target, or intent field may depend on that solution being built.
 
-## The Workflow — Four Steps Per Pass
+Intent comes before hypotheses. The goal is derived from problem and relevance, not from an existing solution. The worth threshold is set before effort is read, so the threshold cannot adapt to the cost of a favored build.
 
-```
-- [ ] 1 Map the material onto the stages (internal, never shown)
-- [ ] 2 First pass only: work stage 0 — finding, gap card, expectation
-- [ ] 3 Read the blocking stage's file and work it
-- [ ] 4 Update the object, run the self-check, give one concrete next action
-```
+## Output Contract
 
-### Step 1: Classify
+Respond in the language of the conversation. Human-facing labels may be translated at runtime. Machine field names and enum values stay in English.
 
-What form did this arrive in? (observation / complaint / problem / solution_request / hypothesis / assignment)
+Always include:
 
-Two forms require care:
-- **`solution_request`** is the most common and the only one requiring rollback. Test question: *"What happens if we do not build it?"* The answer is the problem.
-- **`assignment`** is the most dangerous. A decision was made, that is all. It says nothing about evidence. Do not challenge the decision; fill the stages backwards with what is documented.
-
-### Step 2: First Pass Only
-
-Work stage 0 if this is the first encounter. Produce: raw statement (verbatim), mandate, form, K.-o. check, gap card, entry stage, expectation statement.
-
-**On every later pass:** Skip stage 0. The object already carries a finding and a gap card. Update the gap card rather than rebuilding it. Re-triaging wastes a turn.
-
-### Step 3: Route by Blocking Stage
-
-Read exactly one file — the blocking stage's. Use the routing table at the top of this document.
-
-**One stage per pass** — never chain two. Each stage file ends with exit criteria. When they are met, restate the status and route to the next stage.
-
-### Step 4: Produce & Self-Check
-
-Respond entirely in the language of the conversation. Field labels and stage names are translated at runtime; field names and enum values stay English (they are machine keys).
-
-Run the self-check below. If any item fails, fix and check again. A response that names gaps but leaves the person guessing what to do has failed.
-
----
-
-## On Every Pass
-
-### Tone
-
-Teams usually did good work. The research is often solid and the solution principles sound. What is typically missing is **one dimension**: the size of the problem and the measurability of the change.
-
-> Not: "your research isn't enough."
-> Instead: "we know the problem exists — we don't yet know how much it weighs."
-
-Name gaps plainly and without hedging, but never imply the work was sloppy. The goal is that teams see the gap themselves.
-
-### Output Format
-
-Produce the current state of the object inline, in the conversation's language. One field per line, values a phrase rather than a paragraph.
-
-**The status line has a fixed shape.** The completed stage and the blocking stage are different numbers and both must appear:
-
-```
-Status: stage [n] — [name of stage n] complete · stage [n+1] [name] blocking
+```text
+Status: stage [completed] - [completed name/status] complete · stage [blocking] [blocking name] blocking
 ```
 
-At the very start that reads *"stage 0 — input complete · stage 1 problem blocking"*. Naming only one of the two is the most common way this gets misread. Fill the blocking stage in full; fill later stages only where material already exists, marked *"not yet reliable — stage [n] is open"*.
+When a mandate skips a stage, show it explicitly as `not_applicable` in the gap card and route to the next applicable stage. When the initiative is closed, replace the blocking part with the judgement and reason.
 
-Never drop the status line, the blocking stage, or the next action.
+Then provide only the fields needed for the worked stage. Use one field per line; values should be phrases, not essays. Later-stage material can appear only as `work_at_risk`.
 
-### Self-Check Before Sending
+End with one concrete next action, including owner and due date when the next action depends on another person. If owner or due date is unknown, make assigning them the next action rather than inventing them.
 
+## Self-Check Before Sending
+
+Before responding, verify:
+
+```text
+- [ ] One blocking stage is named, or one closure judgement is named.
+- [ ] Exactly one primary stage file was worked.
+- [ ] Optional support files were used only for the current case.
+- [ ] No invented numbers; missing values use `unknown -> measure first`.
+- [ ] Every material claim is rated `unknown`, `assumed`, `reported`, `observed`, or `validated`.
+- [ ] Confidence is inherited from the weakest link and never asserted independently.
+- [ ] Stages 1-3 contain no solution except trace fields and `work_at_risk` notes.
+- [ ] Gaps have concrete next actions, or the next action is assigning owner/date.
+- [ ] The answer does not hedge the verdict with "might", "perhaps", or "could be worth exploring".
 ```
-- [ ] No invented numbers — unknown is written `unknown → measure first`
-- [ ] Every claim rated unknown / assumed / reported / observed / validated
-- [ ] Confidence inherited from the weakest link, never asserted
-- [ ] Exactly one blocking stage named
-- [ ] Exactly one stage file was read and worked
-- [ ] No solution named anywhere in stages 1–3
-- [ ] No hedging: no "might", "perhaps", "could be worth exploring"
-- [ ] Every gap has a concrete to-do with an owner
-- [ ] Ends with one concrete next action
-```
 
-If any item fails, fix the output and check again.
-
----
-
-## The Object
-
-Every stage writes into one shared object. **`reference/template-spec.md`** holds the field names, enums, ownership rules, and completion conditions.
-
-Read it when producing structured output, when a field's permitted values matter, or when the object will be handed to another system. For conversational work the prose fields in each stage file are enough.
-
-**All enum fields must stay inside their permitted values.** Four of them are what an external backlog tool sorts on — `stage`, `evidence`, `effort`, `judgement` — so an out-of-range value breaks ranking.
-
-**Key rules:**
-- Field ownership: each stage writes only its own fields. Stage 3 does not touch `relevance.baseline_value`; stage 5 does not touch `intent.target`.
-- No number without an origin. Every numeric field has a sibling `*_origin`.
-- Solution-free briefing: no field in stages 1–3 names a solution. If one appears, move it to stage 4.
-
----
-
-## For Single Initiatives
-
-When assessing one idea:
-1. Classify and route to the blocking stage
-2. Read that stage's file and work it
-3. One question drives the pass: What is blocking this from advancing?
-
-**Example:** A solution request arrives. Stage 0 completed, entry stage is 1. Read `block-problem.md`, ask what happens if it is not built, reformulate to a problem. One pass.
-
----
-
-## For Groups & Backlogs
-
-When facilitating a review or session, read **`reference/facilitation.md`** for:
-- Session sequence
-- Who needs to be in the room
-- How to compare several initiatives
-- Common failure modes
-
-Key principle: **Initiatives at the same stage compete. At different stages they do not.**
-
----
-
-## Terminology
-
-**`reference/glossary.md`** holds 63 sourced one-line definitions of the terms used across all stages — output vs. outcome, leading vs. lagging, baseline, proxy, guardrail, attribution, MDE, Goodhart's law, and the five evidence ratings with the research terms behind them.
-
-Read it when a term is used loosely and the disagreement is really about definitions.
+If any item fails, revise before sending.

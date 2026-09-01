@@ -1,98 +1,93 @@
-# Stage 1 — Problem
+# Stage 1 - Problem
 
-## Contents
-- Reformulating first
-- What must be produced
-- Rating the evidence
-- The causal chain
-- The cut
-- Probing questions
-- Exit criteria
+## Purpose
 
-Part one of the briefing. Read this when stage 1 is blocking.
+Stage 1 establishes the problem in user or operational terms and connects it to a business consequence. Read this file when stage 1 is blocking.
 
-## Reformulating first
+For `obligatory` mandates, stage 1 is `not_applicable`: the obligation replaces problem evidence. For `maintenance`, use operational risk instead of a user problem.
 
-If the input was a `solution_request` or `assignment`, the solution has to be translated back into a problem before anything else. The test question:
+## Reformulate Before Judging
 
-> **What happens if we do not build it?**
+If the input was a `solution_request` or a discretionary `assignment`, translate the proposed artifact back into the problem it is meant to address. The test question is:
 
-The answer is the problem. Keep the original wording in `reformulated_from` so the translation stays visible.
+> What happens if we do not build it?
 
-| Hidden solution | Actual problem |
+Keep the original wording in `problem.reformulated_from`. This is a trace field and may name the solution. The active problem fields must not.
+
+| Hidden solution | Problem formulation |
 |---|---|
-| "There's no filter" | Users can't find the right item in long lists and drop out |
-| "We need a dashboard" | The team can't tell on Monday whether last week went well |
-| "Onboarding needs a tutorial" | New users don't reach their first success and churn in week 1 |
+| "There is no filter" | Users cannot find the right item in long lists and abandon the task |
+| "We need a dashboard" | The team cannot tell on Monday whether last week went well |
+| "Onboarding needs a tutorial" | New users do not reach first success and churn in week 1 |
 
-If the rewrite is impossible because nobody knows what users were trying to do, that is the finding: the problem is `unknown`.
+If nobody can say what users or operations fail to achieve, the problem is `unknown`; do not infer one from the proposed solution.
 
-## What must be produced
+## Required Outputs
 
-Three things, none substituting for another:
+Produce three things. None substitutes for another.
 
-1. **User problem** plus **segment** — what users cannot achieve. "Users" is rarely the right unit; "first-time bookers without an account" is.
-2. **Business problem** plus the **metric that suffers** — missing revenue, higher cost, risk, maintenance load.
-3. **The causal chain** connecting the two, link by link.
+1. User problem plus precise segment: what the group cannot achieve.
+2. Business problem plus damaged metric: revenue, cost, risk, compliance exposure, or maintenance load.
+3. Causal chain linking the two, with evidence rating, source, and method for each link.
 
-Only one of the first two means either building something users love that earns nothing, or the reverse.
+For maintenance, replace user problem with operational risk and write the chain as system state -> service effect -> business damage.
 
-## Rating the evidence
+## Evidence Rating
 
-Evidence carries two parts, always: the **source**, named concretely — not "research" but "8 interviews, March, existing customers" — and the **method**.
+Evidence always has source and method. "Research" is not a source. "8 interviews with existing customers in March" is.
 
-| What you have | Rating | What is missing |
+| Material | Rating | Missing for the next rating |
 |---|---|---|
-| A hunch, however senior | `assumed` | Any observation at all |
-| Benchmark — "competitors do it" | `assumed` | Says nothing about *your* users |
-| Support tickets, sales reports, users telling you | `reported` | Firsthand observation |
-| Interviews describing the problem | `reported` | Still secondhand: you heard it, you did not see it |
-| Usability test or session recording of the behaviour | `observed` | The quantitative side — how often, how many |
-| Analytics anomaly on its own | `observed` | The qualitative side — why the number looks like that |
-| Behaviour data and qualitative picture agreeing | `validated` | Nothing at this stage |
+| Nobody checked | `unknown` | any evidence at all |
+| Hunch, senior opinion, or competitor benchmark | `assumed` | observation from your own context |
+| User statements, interview reports, support tickets, sales reports | `reported` | firsthand observation of the behavior |
+| Session recording, usability test, operational log, analytics anomaly | `observed` | triangulation with the other side of the picture |
+| Quantitative data and qualitative explanation agree | `validated` | nothing at this stage |
 
-Nobody has checked at all → `unknown`. The gap between `unknown` and `assumed` matters: the first is an absence, the second is a bet, and they lead to different next steps.
+The common skipped step is `reported` to `observed`: teams hear that something happens, then behave as if they have seen it. Name the gap without dismissing the research.
 
-The jump from `reported` to `observed` is the one teams skip, and the cheapest to close: five sessions of watching the behaviour usually settle what a month of debate cannot.
+## Causal Chain
 
-## The causal chain
+Write the chain link by link:
 
-Write it out and rate **each link separately**:
-
-> Inconsistent price display `validated` → final price not visible early `observed` → user uncertainty `reported` → drop-off at step 3 `assumed` → lost revenue `assumed`
-
-The endpoints are the well-defended part. The guessing hides in the middle. Naming the **weakest link** specifically — not "there is some uncertainty" — is the main output of this stage: that link is what stage 2 will measure, and its rating becomes the confidence of the whole initiative.
-
-Chains longer than about five links usually contain a second problem. Split them.
-
-## The cut
-
-**One problem or several?** If several, split: each part becomes its own object with its own id and its own briefing. Without this rule the question is decorative.
-
-The signal is a chain that branches, or a user problem that maps to two unrelated business metrics. Splitting early is cheap; splitting after stage 3 means redoing the intent.
-
-**See also:** `edge-cases-and-workflows.md` — "Split: One problem or several?" for the full workflow, including how to create separate objects and track the relationship.
-
-## Probing questions
-
-- "Who observed that, and by what exactly?"
-- "Does it show in the data too, or only in the interviews?"
-- "What does the business concretely lose if this stays as it is?"
-- "Which link in the chain did you see, and which one was closed by inference?"
-- "Would the problem still be there if you did not build the planned solution?"
-
-## Exit criteria
-
-```
-- [ ] User problem in user terms, not a missing feature
-- [ ] Segment named precisely
-- [ ] Business problem named with the metric it damages
-- [ ] Causal chain written out, every link rated with source and method
-- [ ] Weakest link named specifically
-- [ ] Confidence derived from it, not asserted
-- [ ] Cut decided; if several problems, split into separate objects
+```text
+Inconsistent price display `validated` - screenshots
+-> final price not visible early `observed` - flow review
+-> user uncertainty `reported` - 8 interviews
+-> drop-off at step 3 `assumed` - not yet linked
+-> lost revenue `assumed` - inferred from drop-off
 ```
 
-If the weakest link is `unknown`, the briefing pauses here until it is measured. Otherwise route to stage 2, where that link is what gets sized.
+The weakest link is the lowest-rated link whose failure would break the chain. Name it by index and reason. The confidence of stage 1 is exactly that rating.
 
-**Note on mandate:** If the mandate is `obligatory`, stage 1 is omitted; the obligation replaces the evidence. If the mandate is `maintenance`, the problem is reduced to operational risk instead of user problem. See `mandate-systems.md` for how mandate affects this stage.
+Chains longer than about five links usually hide multiple problems. Run the cut check.
+
+## Cut Check
+
+Ask whether the initiative contains one problem or several. Split when the chain branches, the segment changes, or one problem maps to unrelated business metrics.
+
+If it splits, create separate objects for the sub-problems and keep the parent at the split point. See `edge-cases-and-workflows.md` for the workflow.
+
+## Probing Questions
+
+- "Who is affected, specifically?"
+- "What can they not achieve today?"
+- "What does the business lose if this stays as it is?"
+- "Which metric shows that loss?"
+- "Which link did you observe, and which link is inferred?"
+- "Would the problem still exist if the proposed solution disappeared?"
+
+## Exit Criteria
+
+```text
+- [ ] User problem is in user terms, not a missing feature.
+- [ ] Segment is precise.
+- [ ] Business problem names the metric it damages.
+- [ ] Causal chain has at least two links.
+- [ ] Every link has evidence, source, and method.
+- [ ] Weakest link is named specifically.
+- [ ] Confidence is derived from the weakest link.
+- [ ] Cut check is decided; if multiple, split into separate objects.
+```
+
+If the weakest link is `unknown`, stage 1 remains blocking and the next action is to get first evidence. Otherwise route to stage 2.

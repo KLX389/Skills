@@ -1,0 +1,36 @@
+{
+  "name": "idea-maturity",
+  "version": "0.3.0",
+  "description": "Assess product initiatives by maturity stage: input triage, problem evidence, relevance, intent, hypotheses, and worth.",
+  "author": {
+    "name": "KLX389"
+  },
+  "homepage": "https://github.com/KLX389/Skills/tree/main/idea-maturity-repo_v2",
+  "repository": "https://github.com/KLX389/Skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "product",
+    "prioritization",
+    "discovery",
+    "evidence",
+    "backlog"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Idea Maturity",
+    "shortDescription": "Assess product ideas by maturity",
+    "longDescription": "Classify product ideas, feature requests, findings, complaints, assignments, and backlog items by maturity stage, then identify the one blocking gap and the next evidence action.",
+    "developerName": "KLX389",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Assess this product idea: where does it stand, what evidence is missing, and what is the next action?",
+      "Sort this backlog by maturity stage and identify which discovery work should happen next.",
+      "Review this shipped initiative and decide whether the idea was wrong or the implementation failed."
+    ],
+    "brandColor": "#2F6F73",
+    "screenshots": []
+  }
+}

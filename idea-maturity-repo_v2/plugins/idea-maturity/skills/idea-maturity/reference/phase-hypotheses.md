@@ -1,119 +1,113 @@
-# Stage 4 — Hypotheses
+# Stage 4 - Hypotheses
 
-## Contents
-- What changes now
-- The hypothesis template
-- The effect chain
-- Riskiest assumption and cheapest test
-- Comparing the paths
-- Build candidate or test candidate
-- Exit criteria
+## Purpose
 
-Solution-bound, and **plural**. One intent carries several hypotheses; a hypothesis serves exactly one intent. When a hypothesis falls, the intent stands and the next one builds on the same briefing.
+Stage 4 compares solution paths against a completed briefing. It is solution-bound and plural: one intent carries several hypotheses; one hypothesis serves exactly one intent.
 
-Requires a completed briefing. Without a fixed goal, hypotheses cannot be compared — only advocated for.
+Read this file when stage 4 is blocking. If the briefing is incomplete, route back to the first open stage in 1-3.
 
-## What changes now
+## What Changes Here
 
-Stages 1–3 forbade naming solutions. Here solutions are the content. The discipline shifts: not *whether* to name one, but never to name only one. A single hypothesis is a warning sign, not a result — it means nobody chose, the first idea simply stayed.
+Stages 1-3 kept solutions out. Stage 4 brings solutions in deliberately. The discipline is now to avoid having only one.
 
-Three directions that reliably produce alternatives:
+Produce at least two plausible paths plus the null variant. A single hypothesis means the first idea stayed, not that comparison happened.
 
-- **Remove instead of add** — can the problem disappear by taking something away?
-- **Change the sequence** — same elements, different order or timing
-- **Change who does it** — automate, delegate, or let the user decide
+Reliable ways to generate alternatives:
 
-## The hypothesis template
+- remove instead of add
+- change sequence, timing, or defaults
+- change who does the work: user, team, automation, partner
+- reduce scope to the smallest target-contributing path
 
-```
+## Hypothesis Template
+
+```text
 HYPOTHESIS
-If we [change], then [behaviour change] among [group], because [reasoning].
+If we [change], then [behavior or operational change] among [group], because [reasoning].
 
 EFFECT CHAIN
-[change]              — [evidence] · [source]
-  ↓
-[behaviour change]    — [evidence] · [source]
-  ↓
-[intermediate effect] — [evidence] · [source]
-  ↓
-[business metric]     — [evidence] · [source]
+[change]              - [evidence] · [source]
+-> [behavior change]  - [evidence] · [source]
+-> [intermediate]     - [evidence] · [source]
+-> [business metric]  - [evidence] · [source]
 
-Weakest link: [which] — [why]
-Confidence: [rating of the weakest link]
+Weakest link: [which] - [why]
+Confidence: [rating of the weakest link, not above problem.confidence]
 
 RISKIEST ASSUMPTION
-[The one assumption whose falseness breaks the chain]
-Cheapest test: [type] — [effort] — [what it decides]
+[assumption whose falseness collapses the path]
+Cheapest test: [type] - [effort] - [what it decides]
 
 ROUGH EFFORT
-[T-shirt size, for comparison only]
+[XS/S/M/L/XL, for ordering only]
 TARGET CONTRIBUTION
-[share of the intent's target, roughly]
+[share of intent target, as range or phrase]
 ```
 
-## The effect chain
+## Effect Chain
 
-**It must end on a business metric**, not on the behaviour change. This closes the hole that otherwise opens between stages 3 and 5: seconds get measured, money gets calculated, and the link between them appears nowhere.
+The effect chain must end on the business metric from stage 1 or the mandate consequence. Stopping at a behavior change leaves the business case unconnected.
 
-> Pre-filled payment details `validated` → booking time −10 s `observed` → fewer drop-offs at the payment step `assumed` → completion rate +2 pp `assumed`
+Example:
 
-Here the third link is the bet: the tests show time saved, not abandonment behaviour. That the duration *causes* the drop-offs is assumption — price or trust would do as well.
+```text
+Pre-filled payment details `validated` - account data exists
+-> booking time -10s `observed` - usability test
+-> fewer payment-step exits `assumed` - not yet measured
+-> completion rate +2 pp `assumed` - inferred
+```
 
-**Confidence is the weakest link's rating.** It can never exceed `problem.confidence` from stage 1: a well-worked solution cannot improve the evidence for a weakly evidenced problem. A later stage may lower confidence, never raise it.
+The weakest link is the current confidence. It cannot exceed stage 1 confidence. It may be lower if the solution path introduces a weaker assumption.
 
-## Riskiest assumption and cheapest test
+## Riskiest Assumption And Cheapest Test
 
-The riskiest assumption is the one that, if false, leaves nothing standing — not the most uncertain, not the easiest to check. Find it by asking of each link: *if this is wrong, does anything survive?*
+The riskiest assumption is the one whose falseness collapses the path, not merely the one with the lowest evidence rating.
 
-| Test | Costs | Use when |
+| Test | Typical effort | Use when |
 |---|---|---|
-| Data check | hours | The behaviour already happens and is already logged |
-| Fake door | days | The assumption is about demand or intent |
-| Prototype with 5 users | days | The assumption is about comprehension |
-| Wizard of Oz | 1–2 weeks | The assumption is about value and the mechanics are expensive |
-| Full build | a quarter | Only when the above cannot answer the question |
+| `data_check` | hours | behavior already happens and is logged |
+| `fake_door` | days | demand or intent is unknown |
+| `prototype` | days | comprehension or workflow fit is unknown |
+| `wizard_of_oz` | 1-2 weeks | value can be tested manually before automation |
+| `full_build_test` | quarter | cheaper tests cannot decide the assumption |
 
-## Comparing the paths
+## Comparing Paths
 
-Effort here is **rough and only for ordering**. Estimating precisely would be wasted, because most hypotheses drop out. The binding estimate belongs to stage 5, for the chosen path only.
+Show confidence, effort, riskiest assumption, and target contribution side by side. Do not multiply them.
 
-| Hypothesis | Effort | Weakest link | Target contribution |
-|---|---|---|---|
-| Pre-fill payment details | M | `assumed` | ~60 % of the target |
-| Express checkout | L | `observed` | ~90 % |
-| Show payment step later | S | `assumed` | unclear |
-| Do nothing | — | — | comparison baseline |
-
-**"Do nothing" is mandatory.** A business case without a null variant compares against nothing.
-
-Effort alone does not sort the list. A cheap hypothesis resting on `assumed` is not better than an expensive one resting on `validated` — it is cheaper *and* less certain. Both values are read together.
-
-**If two hypotheses are equally strong,** apply the tie-breaker sequence: confidence first, effort next, riskiest assumption, reversibility, candidate type. See `edge-cases-and-workflows.md` — "Tie-breaker: Equal-strength hypotheses".
-
-## Build candidate or test candidate
-
-```
-confidence ≤ assumed   → candidate_type: test
-confidence ≥ reported  → candidate_type: build
+```text
+Hypothesis              Effort  Confidence  Target contribution  Candidate
+Pre-fill details        M       assumed     about 60%            test
+Express checkout        L       observed    about 90%            build
+Move payment later      S       assumed     unclear              test
+Null variant            -       -           no change            baseline
 ```
 
-A test candidate skips stage 5. The next step is the cheapest test of its riskiest assumption, not implementation. If that test succeeds, confidence rises and the hypothesis re-enters as a build candidate.
+The null variant is mandatory because it shows what happens if nothing changes. The final business case should still compare the chosen path against the best viable alternative, not automatically against null.
 
-This is the rule that stops well-formatted guesses from being scheduled.
+## Candidate Type
 
-## Exit criteria
-
-```
-- [ ] At least two hypotheses plus the null variant
-- [ ] Each with a full effect chain ending on a business metric
-- [ ] Each link rated; weakest link named
-- [ ] Confidence derived, and not higher than problem.confidence
-- [ ] Riskiest assumption and cheapest test per hypothesis
-- [ ] Rough effort and target contribution per hypothesis
-- [ ] Candidate type derived for each
-- [ ] One path chosen, or a test scheduled
+```text
+confidence <= assumed  -> candidate_type: test
+confidence >= reported -> candidate_type: build
 ```
 
-If the chosen path is a test candidate, stop here: the next action is the test. Otherwise route to stage 5 for the chosen hypothesis only.
+`candidate_type: build` means the path is eligible for stage 5 worth assessment. It is not approval to schedule implementation. Stage 5 can still return `build`, `test`, `defer`, or `drop`.
 
-**Note on mandate:** For `discretionary`, hypotheses compare full solution space. For `obligatory`, hypotheses compare only the "how" — multiple compliant paths, not whether to comply. For `maintenance`, hypotheses compare paths to system stability. See `mandate-systems.md` for how mandate affects this stage.
+A `test` candidate stops at stage 4. The next action is the cheapest test of the riskiest assumption. If the test succeeds, update the evidence and re-enter stage 4 or stage 5 as appropriate.
+
+## Exit Criteria
+
+```text
+- [ ] At least two hypotheses plus the null variant.
+- [ ] Each hypothesis maps to exactly one intent.
+- [ ] Each effect chain ends on the business metric or mandate consequence.
+- [ ] Every link has evidence and source.
+- [ ] Weakest link and confidence are derived and not above problem confidence.
+- [ ] Riskiest assumption and cheapest test are named per hypothesis.
+- [ ] Rough effort and target contribution are shown per hypothesis.
+- [ ] Candidate type is derived per hypothesis.
+- [ ] One path is chosen for stage 5, or a test is scheduled.
+```
+
+If the chosen path is a test candidate, stop here. Otherwise route to stage 5 for the chosen path only.

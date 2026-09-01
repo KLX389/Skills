@@ -42,7 +42,7 @@ The mandate is **not** a feature. It is not a deadline. It is the category of de
 - "Idea: experiment with a loyalty program"
 
 **Recognition test:**
-- Is there an external sender (law, contract, user demand at scale)? → No
+- Is there a binding external sender (law, contract, platform rule)? → No
 - Is there a deadline imposed from outside? → No
 - Is there a consequence for not doing it? → Only opportunity cost (we could do something else instead)
 
@@ -79,7 +79,7 @@ The mandate is **not** a feature. It is not a deadline. It is the category of de
 
 **Recognition test:**
 - Is there an external law or contract driving it? → No (obligatory)
-- Is there an external customer demand? → No (discretionary)
+- Is there a binding customer contract or formal requirement? → No (otherwise obligatory)
 - Does the system fail or become inoperable if we do not act? → Yes
 - Is there a deadline set by technical reality, not business choice? → Yes
 
@@ -195,11 +195,11 @@ Both are "externally driven." What is the difference?
 
 | Aspect | Obligatory | Maintenance |
 |--------|-----------|-------------|
-| **Sender** | External: law, contract, platform, customer | Internal: technical reality (end-of-life, outage risk) |
+| **Sender** | External and binding: law, contract, platform, regulator, audit | Technical reality or internal operations (end-of-life, outage risk) |
 | **Consequence** | Legal, contractual, market exclusion | Technical failure, data loss, service degradation |
 | **Example** | "GDPR compliance" | "Database library end-of-life" |
 | **Deadline** | Often hard (legal date) | Softer, but urgent (before system fails) |
-| **How to tell** | Is someone outside forcing us? → Obligatory | Is the system breaking? → Maintenance |
+| **How to tell** | Is a binding external requirement forcing us? → Obligatory | Is the system breaking? → Maintenance |
 
 **Rule of thumb:** If you could legally choose to *not* do it, it is maintenance. If the law says you must, it is obligatory.
 
@@ -211,12 +211,9 @@ Do not downrank obligatory work just because it was mandated. Stage 5 still prod
 
 ### Confusion 3: Discretionary ≠ Optional
 
-Discretionary means we chose it, not that it is low priority. A discretionary initiative can be higher priority than an obligatory one if:
-- The discretionary work creates much more value
-- The obligatory deadline is far away (capacity is available)
-- The obligatory work is very small
+Discretionary means we chose it, not that it is low priority. A discretionary initiative can create more upside than an obligatory one, but it still does not erase a binding obligation.
 
-Deduction model still applies: obligatory goes in the calendar first (with dates), then discretionary is ranked.
+Deduction model applies: obligatory work goes in the calendar first with dates, then discretionary work is ranked inside the remaining capacity. If an obligatory deadline is far away or tiny, it consumes little near-term capacity; it is not ranked by upside against discretionary work.
 
 ### Confusion 4: Maintenance deadline is soft
 
@@ -234,7 +231,7 @@ Do not confuse soft deadline with no urgency.
 
 ```
 Is there an external sender?
-  ├─ YES: Law, contract, platform, customer demand
+  ├─ YES: Law, contract, platform rule, audit, regulator, formal security requirement
   │  └─ Can we legally choose not to do it?
   │     ├─ NO → obligatory
   │     └─ YES → (still not obligatory; see next)

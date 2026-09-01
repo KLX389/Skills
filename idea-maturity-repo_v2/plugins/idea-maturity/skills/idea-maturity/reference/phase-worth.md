@@ -1,92 +1,84 @@
-# Stage 5 — Effort & Worth
+# Stage 5 - Effort And Worth
 
-## Contents
-- Scope
-- Effort and feasibility
-- The business case
-- Opportunity cost
-- The payback threshold
-- The judgement
-- Exit criteria
+## Purpose
 
-For the chosen hypothesis only. This is where binding estimation is worth the time.
+Stage 5 evaluates the chosen build-eligible hypothesis. This is where effort becomes binding and a judgement is made.
+
+Read this file when stage 5 is blocking. Do not use it for every hypothesis; use it for the chosen path only.
 
 ## Scope
 
-Stage 4 produced a rough size for ordering. Here the estimate must hold: dependencies, prerequisites, resources, one named owner.
+Stage 4 used rough effort for ordering. Stage 5 needs an estimate that can be acted on: dependencies, prerequisites, owner, reversibility, cost, benefit, confidence, opportunity cost, and judgement.
 
-Two things of different kinds were deliberately separated. *Is it possible at all* — legally, contractually, technically — was answered as the k.-o. check in stage 0, where it costs five minutes. What remains here is *how big is it*, which is a number and belongs next to the value.
+The K.O. check in stage 0 already handled known impossibility. Stage 5 handles cost, capacity, sequencing, and worth.
 
-## Effort and feasibility
+## Effort And Feasibility
 
 | Item | Standard |
 |---|---|
-| **Effort** | T-shirt size, estimated by those who would do the work |
-| **Dependencies** | Named systems, teams, data sources, contracts — not "some backend work" |
-| **Prerequisites** | What must exist before starting; each with an owner |
-| **Owner** | One person, by name |
-| **Reversibility** | `switchable` / `partial` / `irreversible` |
+| Effort | T-shirt size estimated by the responsible discipline |
+| Dependencies | named systems, teams, data sources, vendors, contracts |
+| Prerequisites | each with owner; add due date when it gates start |
+| Owner | one accountable person |
+| Reversibility | `switchable`, `partial`, or `irreversible` |
 
-Sizes: XS under 1 week · S 1–2 weeks · M 3–6 weeks · L 1 quarter · XL do not estimate, decompose.
+Size reference: XS under 1 week; S 1-2 weeks; M 3-6 weeks; L 1 quarter; XL must be decomposed.
 
-**The estimate must not come from the idea's author.** Not because they are wrong, but because it is unverifiable and nobody is surprised when it turns out optimistic. A one-line written answer from the responsible discipline is enough; a meeting where nobody objected is not.
+The binding effort estimate must not come only from the idea author. A written one-line estimate from the responsible discipline is enough. A meeting where nobody objected is not.
 
-A prerequisite with no owner and no date is the most common silent killer at this stage.
+## Business Case
 
-## The business case
+Compare against the best viable alternative from stage 4, not automatically against doing nothing. If a partial path delivers most of the target for a fraction of the effort, the full build is not worth it yet.
 
-**Compare against the best alternative, not against nothing.** This is the most common error in business cases. If a partial solution delivers 70 % of the effect for 20 % of the effort, the case for the full build is wrong — not miscalculated, but calculated against the wrong alternative. Stage 4 produced those alternatives; use them.
-
-```
+```text
 cost:          [amount]
 benefit:       [amount per year, shared unit]
-compared_with: [best alternative from stage 4]
+compared_with: [best viable alternative]
 payback:       [period]
-confidence:    [← confidence of the chosen hypothesis]
+confidence:    [confidence of chosen hypothesis]
 ```
 
-**The case inherits the confidence of its effect chain's weakest link.** Two exact figures resting on an `assumed` remain a bet. Stating the confidence next to the numbers prevents the arithmetic from acquiring an authority its inputs do not have.
+The business case inherits the chosen hypothesis confidence. Exact cost and benefit figures resting on `assumed` links remain a bet.
 
-## Opportunity cost
+For `obligatory`, the business case compares compliant paths by cost, deadline risk, operational risk, and residual compliance risk. Compliance itself is not justified by ROI.
 
-**What do we drop to do this?** Under scarce capacity this is often the larger item, and it is the one most frameworks omit. A quarter is not only its cost in money; it is everything that does not happen in that quarter.
+## Opportunity Cost
 
-Name the specific initiative that gets displaced, not "other work".
+Name what gets displaced. "Other work" is not enough. Under scarce capacity, the displaced initiative is often the real cost.
 
-## The payback threshold
+If nothing specific is displaced because capacity is already reserved for this mandate, say so and name the reservation.
 
-Set in advance, not derived from the result: *"at a quarter of effort we accept at most 18 months."* Without a threshold, any payback period that is not absurd justifies the measure.
+## Payback Or Decision Threshold
 
-## The judgement
+For discretionary and maintenance work, the acceptable payback or effort threshold must be set before reading the result. Without a threshold, almost any non-absurd payback can be defended.
 
-The stage is not finished when the numbers exist. Establishing effort and cost and then saying nothing is the most common dead end — the estimate is on the table, but nobody has stated whether it is worth it.
+For obligatory work, use compliance deadline and minimum acceptable compliant scope instead of payback.
+
+## Judgement
 
 | Judgement | When |
 |---|---|
-| `build` | Value exceeds effort against the best alternative, confidence at least `reported` |
-| `test` | Value plausible, but the effect chain's weakest link is `assumed` |
-| `defer` | Worth it, but capacity is committed elsewhere — with a review date |
-| `drop` | Effort exceeds value, or the worth threshold is unreachable |
+| `build` | value exceeds effort against best alternative, confidence is at least `reported`, and capacity tradeoff is accepted |
+| `test` | value is plausible but a material assumption still needs evidence before build |
+| `defer` | worth doing, but capacity is committed elsewhere; requires review date |
+| `drop` | effort exceeds value, threshold is unreachable, or no compliant/feasible path exists |
 
-Every judgement carries a reason. The object is kept in all four cases: a documented rejection stops the same idea returning unexamined two quarters later.
+Every judgement carries a reason. Keep the object in all cases so the decision is traceable.
 
-## Exit criteria
+## Exit Criteria
 
+```text
+- [ ] Effort is estimated by the responsible discipline, source named.
+- [ ] Dependencies and prerequisites are listed; each prerequisite has an owner.
+- [ ] One accountable owner is named.
+- [ ] Reversibility is stated.
+- [ ] Business case compares against the best viable alternative.
+- [ ] Confidence is inherited and shown next to figures.
+- [ ] Opportunity cost is specific, or reserved mandate capacity is named.
+- [ ] Payback, decision threshold, or compliance deadline is explicit.
+- [ ] Judgement is stated with reason.
 ```
-- [ ] Effort estimated by the responsible discipline, source named
-- [ ] Dependencies and prerequisites listed, each prerequisite with an owner
-- [ ] One named owner, reversibility stated
-- [ ] Business case against the best alternative, not against nothing
-- [ ] Confidence inherited and shown next to the figures
-- [ ] Opportunity cost named specifically
-- [ ] Payback threshold set in advance
-- [ ] Judgement stated with a reason
-```
 
-With a judgement of `build`, the initiative is a build candidate and can be ranked. Everything up to here was discovery; everything after is delivery.
+With `judgement: build`, the initiative is ready to rank among other stage-5 build candidates. Everything before this point was discovery; everything after is delivery.
 
-**Note on mandate:** For `discretionary`, the business case is cost vs. benefit, and all judgements are available. For `obligatory`, pick the cheapest compliant variant and ship on deadline. For `maintenance`, defer is risky; escalate if you cannot ship. See `mandate-systems.md` for how mandate affects this stage.
-
-## After launch
-
-When this initiative ships, return here after launch to validate the assumptions. See `edge-cases-and-workflows.md` — "Post-launch review: Was the idea wrong or the implementation?" for how to structure the retrospective and close the feedback loop.
+After launch, use `edge-cases-and-workflows.md` for the post-launch review: whether the idea was wrong, the implementation failed, or the evidence rating was too optimistic.

@@ -56,15 +56,15 @@ Plainly: the irritation is reported, not observed, and the business problem has 
 - Confidence: **assumed**
 - Cut: one problem
 
-**Missing for stage 2**
+**Missing to complete stage 1**
 
-- [ ] Drop-off rate per booking step from the funnel → analytics query → Data, week 12
-- [ ] Name the business problem: which metric concretely suffers → Product
-- [ ] Check whether support tickets on pricing exist → Support
+- [ ] Name the business problem: which metric concretely suffers -> Product, 2026-03-15
+- [ ] Check whether pricing confusion appears in support tickets -> Support, 2026-03-15
+- [ ] Test whether price uncertainty links to step-3 abandonment -> Data, 2026-03-17
 
 **Next step**
 
-Run the funnel query. Two days, and it decides whether link 4 holds — before the concept is developed any further.
+Name the damaged business metric first. Then run the smallest data check that decides whether link 4 holds before the concept is developed any further.
 
 ## What this demonstrates
 

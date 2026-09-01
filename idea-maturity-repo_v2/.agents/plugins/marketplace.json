@@ -1,0 +1,20 @@
+{
+  "name": "klx389-skills",
+  "interface": {
+    "displayName": "KLX389 Skills"
+  },
+  "plugins": [
+    {
+      "name": "idea-maturity",
+      "source": {
+        "source": "local",
+        "path": "./plugins/idea-maturity"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

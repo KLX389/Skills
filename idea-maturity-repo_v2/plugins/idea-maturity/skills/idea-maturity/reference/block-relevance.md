@@ -1,91 +1,87 @@
-# Stage 2 — Relevance
+# Stage 2 - Relevance
 
-## Contents
-- What must be produced
-- The number-with-origin rule
-- Sizing fast without faking
-- The problem value
-- When the baseline is unknown
-- Probing questions
-- Exit criteria
+## Purpose
 
-Part two of the briefing. This is where most initiatives actually sit. Read this when stage 2 is blocking.
+Stage 2 sizes the problem. This is where many initiatives actually sit: the problem exists, but nobody knows how much it weighs.
 
-## What must be produced
+Read this file when stage 2 is blocking.
 
-| Value | Question | Example |
+## Required Outputs
+
+| Value | Question | Standard |
 |---|---|---|
-| **Reach** | How many, absolute or as a share? | "20–30 % of those who abandon booking" |
-| **Frequency** | How often? | "in every booking, on average 1.4× per session" |
-| **Severity** | What happens when it does? | "abandonment, not a detour — users do not return" |
-| **Baseline** | Today's value of the damaged metric | "drop-off rate at step 3 = 34 %" |
+| Reach | How many users, accounts, sessions, systems, or cases are affected? | number or range with denominator |
+| Frequency | How often does it occur? | count per user, session, week, month, incident, or release |
+| Severity | What happens when it occurs? | consequence, not adjective |
+| Baseline | Today's value of the damaged metric | measured value, period, and origin |
+| Problem value | What is being rid of the problem worth? | shared portfolio unit, usually money/year, with calculation |
 
-Reach × severity is what makes initiatives comparable. Without both, prioritization falls back to whoever argues most confidently.
+Reach and severity make initiatives comparable. Without both, prioritization falls back to persuasion.
 
-The tell-tale sentence here is *"we did research, we know it's a problem."* True — and it leaves open how big, how many, how often. Say that plainly without implying the research was poor.
+## Number-With-Origin Rule
 
-## The number-with-origin rule
+Every numeric or sized field needs value, origin, and measurement window:
 
-Every value is a **number plus where it came from**:
+```text
+Reach: 20-30% of checkout abandoners
+Origin: Q2 funnel data plus 8 interviews with first-time bookers
+Window: 2026-04-01 to 2026-06-30
+```
 
-> "Affects an estimated 20–30 % of abandoners. Origin: Q2 funnel data plus 8 interviews."
+A number without origin does not count. An origin without a number is stage 1 material. Use ranges when precision is not earned.
 
-A number without origin does not count — it becomes fact by repetition. An origin without a number does not count either; that is stage 1 material wearing a stage 2 label. **Never invent a plausible-looking figure.** An honest `unknown` outranks a confident guess, because the guess is what later gets quoted in a steering deck.
+Never invent plausible figures. Use `unknown -> measure first` and add an `open_measurements` item with method, owner, and due date.
 
-Ranges beat point values. "20–30 %" invites a check; "24 %" invites belief.
+## Fast Sizing Without Faking
 
-## Sizing fast without faking
+Use the cheapest valid source first:
 
-Estimates are legitimate; only their origin is mandatory. Cheapest sources first:
+1. Existing funnel, event, revenue, reliability, or operations data.
+2. Ticket, complaint, sales, or support volume as lower bound.
+3. Segment arithmetic: observed share in small sample times affected population, stated as range.
+4. Existing research or CS reports as directional evidence.
+5. A deliberate measurement when none of the above answers the field.
 
-1. **Funnel or event data already collected** — usually answers reach and baseline in an afternoon
-2. **Support and complaint volume** — a lower bound on frequency; complainers are a fraction of those affected
-3. **Segment arithmetic** — share observed in a small sample × size of the affected segment, stated as a range
-4. **Sales or CS reports** — directional only, rated `reported`
-5. **A deliberate measurement** — when 1–4 come up empty, this becomes the next action rather than a gap
+## Problem Value
 
-## The problem value
+Convert the sized problem into the portfolio's shared unit and show the calculation. This value is the ceiling for the worth threshold in stage 3; it is not a solution business case.
 
-Convert the sized problem into one shared unit for the whole portfolio, usually money per year, and state the calculation. This single number is the **sole basis of the worth threshold in stage 3** — it answers what it would be worth to be rid of the problem, independently of what any solution might cost.
+If conversion is genuinely impossible, write `not_convertible` and rank the initiative separately. Do not invent a conversion rate to force comparability.
 
-Where conversion is genuinely impossible, write `not convertible` and rank the initiative separately rather than inventing a rate.
+For `obligatory`, problem value is the avoided consequence of non-compliance: fine, contract loss, app store exclusion, audit failure. Name the consequence rather than inventing a probability. For `maintenance`, use avoided operational damage.
 
-For `obligatory` demand the problem value is the **avoided consequence** — fine, contract loss, market exclusion. Name the consequence rather than inventing a probability of occurrence.
+## Unknown Baseline Or Value
 
-## When the baseline is unknown
+A measurement plan is useful, but it does not complete stage 2. If reach, frequency, severity, baseline, or problem value is `unknown`, stage 2 remains blocking until the measurement or explicit non-convertible decision exists.
 
-Write `unknown → measure first` and make instrumenting it the next action, with owner and date. This is not a failure of the initiative — it is the cheapest work on the whole path, and it usually unblocks several at once. Three initiatives blocked on the same missing baseline need one measurement, not three debates.
+Write:
 
-Without a starting value no effect can ever be proven. Stage 3 will be unbuildable and a post-launch argument about whether it worked is guaranteed.
+```text
+Baseline: unknown -> measure first
+Open measurement: query checkout_step_abandonment by step; owner Data; due 2026-09-08
+```
 
-## Probing questions
+Without a baseline, stage 3 cannot set a falsifiable target. Without problem value or an explicit `not_convertible`, stage 3 cannot set a worth threshold.
 
-- "How many users does this affect — roughly, ten percent or eighty?"
-- "What is the estimate based on?"
+## Probing Questions
+
+- "How many are affected - ten percent or eighty?"
+- "What is that estimate based on?"
 - "What is today's value of the metric that suffers?"
-- "How often does it occur per user and session?"
-- "What happens when it occurs — a detour or an abandonment?"
-- "What would it be worth to be rid of the problem?"
+- "How often does it occur per user, session, or period?"
+- "What happens when it occurs - detour, abandonment, cost, risk, or outage?"
+- "What would it be worth to be rid of this problem?"
 
-## Exit criteria
+## Exit Criteria
 
+```text
+- [ ] Reach as number or range, with denominator, origin, and period.
+- [ ] Frequency with origin and period.
+- [ ] Severity as consequence, with origin.
+- [ ] Baseline metric and value measured, with origin and period.
+- [ ] Problem value calculated in the shared unit, or explicitly `not_convertible`.
+- [ ] Estimates marked as estimates and kept as ranges where appropriate.
+- [ ] No required value is `unknown` unless stage 2 remains blocking with an open measurement.
 ```
-- [ ] Reach as number or range, with origin
-- [ ] Frequency stated, with origin
-- [ ] Severity as a consequence, not an adjective
-- [ ] Baseline measured, or `unknown → measure first` with owner and date
-- [ ] Problem value in the portfolio's shared unit, with its calculation
-- [ ] Estimates marked as estimates, never rounded into facts
-```
 
-If reach and severity together do not justify any effort, stop here and say so. Killing an initiative at stage 2 costs a measurement; killing it after stage 5 costs a quarter.
-
-**Note on mandate:** For `obligatory`, sizing means clarifying the scope of the obligation (who and what). For `maintenance`, sizing means risk and frequency of the operational problem. For `discretionary`, full four-point sizing. See `mandate-systems.md` for how mandate affects this stage.
-
-## What if measurement contradicts stage 1?
-
-If sizing the problem reveals that the stage 1 causal chain was incomplete or incorrectly rated, **rollback to stage 1.** Mark stage 2 work as `work_at_risk` and route back to problem.
-
-Example: "The funnel shows drop-off at step 3 is 34%. But interviews never mentioned step 3 — they all complained about step 1. The causal chain is broken."
-
-See `edge-cases-and-workflows.md` — "Rollback: When to change the blocking stage" for the full procedure.
+If reach and severity together do not justify further effort, close with `drop` at stage 2. If new sizing contradicts the stage 1 chain, read `edge-cases-and-workflows.md` and roll back to stage 1.

@@ -1,102 +1,113 @@
-# Stage 3 — Intent & Success Metrics
+# Stage 3 - Intent And Success Metrics
 
-## Contents
-- The fill-in-the-blank as acceptance test
-- The target formula
-- Which metric belongs in the intent
-- The worth threshold
-- Indicators, guardrails, stop criterion
-- Two different dates
-- Probing questions
-- Exit criteria
+## Purpose
 
-Part three of the briefing, and the seal on it. Goal-bound and solution-free: the intent survives every discarded solution.
+Stage 3 completes the briefing. It states what should be true instead, without naming a solution, and defines how success will be recognized.
 
-## The fill-in-the-blank as acceptance test
+Read this file when stage 3 is blocking. If the baseline or problem value from stage 2 is missing, route back to stage 2 instead of inventing a target.
 
-> [user group] should achieve [measurable result], without [current problem].
+## Intent Statement
 
-This is not a form. Every blank that cannot be filled names the block still open:
+Use this fill-in-the-blank as an acceptance test for stages 1 and 2:
 
-| Blank | Comes from | Empty means |
+```text
+[user group] should achieve [measurable result], without [current problem].
+```
+
+| Blank | Source | Empty means |
 |---|---|---|
-| User group | 1 · segment | You don't know who is affected |
-| Current problem | 1 · user problem | You have a solution, not a problem |
-| Measurable result | 2 · baseline | You cannot prove an effect later |
+| user group | `problem.segment` | affected group is unknown |
+| current problem | `problem.user_problem` or maintenance risk | problem is still a solution in disguise |
+| measurable result | `relevance.baseline_metric` and baseline | effect cannot be proven later |
 
-Whoever writes the sentence in one go has evidenced the blocks beneath it. Whoever stalls knows immediately where.
+Example:
 
-Example: *"Customers with complaints should receive a helpful resolution within 60 minutes, without having to follow up repeatedly."*
+```text
+Customers with complaints should receive a helpful resolution within 60 minutes, without having to follow up repeatedly.
+```
 
-**No solution appears in this sentence.** If one does, the phase boundary has been breached — the artefact belongs in stage 4.
+No solution appears in this sentence. If one does, move it to stage 4 as a hypothesis.
 
-## The target formula
+## Target Formula
 
-The binding part, written directly beneath the statement:
+The target is the measurable result, written directly under the statement:
 
-> [metric] from [baseline] to [target] by [date]
+```text
+[metric] from [baseline] to [target] by [measurement date]
+```
 
-Missing any of the three parts and it is not a target:
+The metric should be user-near or operation-near: completion rate, resolution time, error rate, availability, time to first success. The business metric remains the reason the work matters, not the intent metric itself, unless the problem is already directly financial.
 
-| Missing | What it degrades into |
+Missing pieces degrade the target:
+
+| Missing | Degrades into |
 |---|---|
-| **What** | An activity. "We launch X" is an output, not an outcome change. |
-| **How much** | Unfalsifiable. "More bookings" is met by a single extra booking. Needs baseline *and* target. |
-| **By when** | No moment of truth. The effect is awaited indefinitely and nothing is switched off. |
+| metric | activity or output |
+| baseline | unfalsifiable wish |
+| target value | direction without decision threshold |
+| measurement date | no moment of truth |
 
-## Which metric belongs in the intent
+## Worth Threshold
 
-**The user-near metric, not the business metric.** Revenue depends on too much to be attributed to one measure. Customer satisfaction, completion rate, resolution time — those move because of the initiative.
+Ask:
 
-The business metric is the *why* behind the intent. The link between them is the effect chain in stage 4, and it carries its own confidence. Putting revenue in the intent hides that link and makes the target unattributable.
+> Above which problem value would this have been worth pursuing?
 
-## The worth threshold
+The worth threshold comes from `relevance.problem_value` or maintenance damage value. It must be set before reading effort or cost. Otherwise the threshold adapts to the effort of a favored solution.
 
-> **Above which value would it have been worth it?**
+The threshold is not the same as the user-near target. The target says what should change; the threshold says how valuable that change needs to be.
 
-Derived from `relevance.problem_value` — what it is worth to be rid of the problem — **never from implementation cost**. This block must not read effort or cost fields at all. Otherwise the target adapts to what someone already wanted to build.
+For `obligatory`, the threshold is `not_applicable`: compliance is not optional. Stage 5 will compare compliant paths by cost, risk, and deadline.
 
-If the threshold lies above what is realistically achievable, the initiative is refuted here, before any hypothesis is formed. That is the cheapest possible moment. Record it and end.
+If the threshold is above the achievable problem value, close the initiative with `drop` before forming hypotheses.
 
-An estimated target is fine when labelled `proposed` or `confirmed`.
+## Indicators, Guardrails, Stop Criterion
 
-## Indicators, guardrails, stop criterion
+- Leading indicator: early proxy that can steer action before the lagging target matures.
+- Lagging indicator: the actual outcome measure or the closest attributable confirmation.
+- Guardrail: metric that must not get worse, with numeric limit and direction.
+- Stop criterion: result that ends or redirects the initiative. It is not a date.
+- Attribution: control group, or a clean before/after window with confounders named.
 
-- **Leading indicator** — early signal, fast but a proxy: *"Share of users opening the new comparison rises from 0 to above 15 % in week 1."*
-- **Lagging indicator** — the actual result, reliable but slow: *"Completion rate rises from 34 % to 38 % within 8 weeks of launch."*
-- **Guardrail** — what must not get worse, at least one, with a numeric limit: *"Support tickets do not exceed 120 per week over the same period."* A guardrail without a number is decoration.
-- **Stop criterion** — which *result* ends the initiative. Written before the start it is a decision rule; written afterwards it is an excuse. If nobody can name a result that would stop it, the initiative is not being tested but defended.
-- **Attribution** — control group, or a clean before/after window with the confounders named. Decided afterwards, attribution is chosen to fit the outcome.
+Examples:
 
-## Two different dates
-
-`target.date` is the **measurement deadline** — when the target should be reached. `decision_date` is when someone decides on continuation. Usually the same, not necessarily. The stop criterion is a *result* and can occur at any time before either.
-
-For `obligatory` demand the intent is given in advance: the obligation is the goal, its legal deadline the date. The block is then filled top-down and stages 1–2 only clarify scope.
-
-## Probing questions
-
-- "How should it be instead — in one sentence, without naming the solution?"
-- "Which metric moves if this succeeds?"
-- "Above which value would the effort have been worth it?"
-- "What must not get worse in the process?"
-- "Which result would convince you the idea was wrong?"
-- "Who decides on this, and when?"
-
-## Exit criteria
-
-```
-- [ ] Intent statement complete, naming no solution
-- [ ] Target formula with metric, baseline, target, date
-- [ ] Metric is user-near, not the business metric
-- [ ] Worth threshold derived from the problem value, marked reachable or not
-- [ ] At least one leading and one lagging indicator, each a full formula
-- [ ] At least one guardrail with a numeric limit
-- [ ] Stop criterion stated as a result
-- [ ] Attribution decided
-- [ ] Decider and decision date set
+```text
+Leading: share of affected users reaching price confirmation rises from 0% to 15% in week 1.
+Lagging: checkout completion rises from 34% to 38% within 8 weeks.
+Guardrail: refund-related support tickets do not rise above 120 per week.
+Stop criterion: if completion stays below 35% after 8 weeks and guardrails hold, stop this path.
+Attribution: before_after, excluding campaign weeks and payment outage days.
 ```
 
-When these hold, **the briefing is complete**. It has an owner and a handover date, and it stands on its own even if no hypothesis is ever formed. Only now does stage 4 begin.
+## Two Dates
 
-**Note on mandate:** For `discretionary`, intent is discovered in conversation. For `obligatory`, intent is given in advance (the obligation is the goal). For `maintenance`, intent is risk mitigation (return to normal). See `mandate-systems.md` for how mandate affects this stage.
+`target.date` is the measurement deadline. `decision_date` is when someone decides whether to continue, change, or stop. They are often the same date, but not always.
+
+For `obligatory`, the obligation supplies the target and legal deadline. Stages 1-2 only clarify scope and consequence.
+
+## Probing Questions
+
+- "How should it be instead - in one sentence, without naming the solution?"
+- "Which user-near or operation-near metric moves if this succeeds?"
+- "What is the current baseline and where does it come from?"
+- "What target value would make the change meaningful?"
+- "What must not get worse?"
+- "Which result would stop or redirect the initiative?"
+- "Who decides, and on what date?"
+
+## Exit Criteria
+
+```text
+- [ ] Intent statement is complete and solution-free.
+- [ ] Target formula has metric, baseline, target value, and measurement date.
+- [ ] Metric is user-near or operation-near, not a broad business metric by default.
+- [ ] Worth threshold is derived from problem value before effort is read, or `not_applicable` for obligatory work.
+- [ ] Worth threshold is marked reachable or unreachable.
+- [ ] At least one leading and one lagging indicator each has metric, baseline, target, and period.
+- [ ] At least one guardrail has numeric limit and direction.
+- [ ] Stop criterion is stated as a result.
+- [ ] Attribution approach is decided or explicitly `unresolved`.
+- [ ] Decider and decision date are set.
+```
+
+When these hold, the briefing is complete. It has an owner and handover target. Only now does stage 4 begin.
