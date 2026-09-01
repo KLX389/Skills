@@ -1,0 +1,37 @@
+{
+  "name": "zinsser-style-guardian",
+  "version": "0.1.0",
+  "description": "Review and rewrite non-fiction prose for clarity, brevity, active verbs, concrete language, and human voice.",
+  "author": {
+    "name": "KLX389"
+  },
+  "homepage": "https://github.com/KLX389/Skills/tree/main/Non-fiction%20writing",
+  "repository": "https://github.com/KLX389/Skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "writing",
+    "editing",
+    "non-fiction",
+    "style",
+    "clarity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Zinsser Style Guardian",
+    "shortDescription": "Tighten non-fiction prose",
+    "longDescription": "Review or rewrite factual prose so it becomes clearer, tighter, more active, more concrete, and more human while preserving meaning.",
+    "developerName": "KLX389",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Überarbeite diesen Text klarer, knapper und aktiver.",
+      "Gib mir nur Feedback zum Stil dieses Entwurfs.",
+      "Direkt überarbeiten: mach diesen Absatz menschlicher."
+    ],
+    "brandColor": "#4F6B4F",
+    "screenshots": []
+  }
+}
