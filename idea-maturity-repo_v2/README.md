@@ -43,9 +43,40 @@ Stages 1-3 form the briefing. The briefing is solution-free and stands on its ow
 
 ## Install
 
+The skill payload itself is Markdown only: no runtime scripts, no network calls, no filesystem writes. Review `plugins/idea-maturity/skills/idea-maturity` before installing it in any agent environment.
+
+### Claude App
+
+Claude supports custom Skills as uploaded ZIP files. Code execution and file creation must be enabled first. On individual plans this is under `Settings > Capabilities`; on Team and Enterprise plans an owner may need to enable Skills in organization settings.
+
+Build the Claude upload ZIP from the package root:
+
+```bash
+python3 scripts/build_claude_skill_zip.py
+```
+
+Then upload `dist/idea-maturity-claude-skill.zip` in Claude via `Customize > Skills > + > Upload skill`, and toggle the skill on. The ZIP contains one top-level folder named `idea-maturity`, with `SKILL.md` and its `reference/` files inside.
+
+Official Claude help: https://support.claude.com/en/articles/12512180-use-skills-in-claude
+
+### Claude Team Or Enterprise
+
+Use the same ZIP generated above. Organization owners can provision it organization-wide in `Organization settings > Skills`; individual users can then enable or disable it from their Skills list.
+
+### Claude Code
+
+For a project-local Claude Code skill, copy the skill folder into the project's `.claude/skills` directory:
+
+```bash
+mkdir -p .claude/skills
+cp -R /path/to/idea-maturity-repo_v2/plugins/idea-maturity/skills/idea-maturity .claude/skills/idea-maturity
+```
+
+Start Claude Code from that project and type `/` to verify that the custom skill appears. Claude Code can also load relevant skills automatically when the request matches the skill description.
+
 ### Codex Plugin
 
-The package contains a Codex-compatible local plugin manifest:
+The package also contains a Codex-compatible local plugin manifest:
 
 ```text
 idea-maturity-repo_v2/
@@ -55,15 +86,13 @@ idea-maturity-repo_v2/
 
 From a local checkout, add the package root as a marketplace, then install `idea-maturity` through the Codex plugin flow.
 
-### Direct Skill Upload
+### Direct Skill Folder
 
-For environments that accept a standalone skill folder, upload or zip:
+For any other environment that accepts the Agent Skills folder format, use:
 
 ```text
 plugins/idea-maturity/skills/idea-maturity
 ```
-
-The skill payload itself is Markdown only: no runtime scripts, no network calls, no filesystem writes.
 
 ## Use
 
@@ -108,6 +137,8 @@ idea-maturity-repo_v2/
             facilitation.md
             example-briefing.md
             glossary.md
+  scripts/
+    build_claude_skill_zip.py
   tests/
     test_skill_contract.py
   CHANGELOG.md

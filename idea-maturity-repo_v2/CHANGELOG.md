@@ -24,6 +24,7 @@ Because a skill's `description` controls when Claude triggers it, treat descript
 - Codex-compatible plugin manifest under `plugins/idea-maturity/.codex-plugin/plugin.json`
 - Local marketplace entry under `.agents/plugins/marketplace.json`
 - Repository contract test for packaging, routing references, enums, and core methodology invariants
+- Claude installation instructions and `scripts/build_claude_skill_zip.py` for upload-ready custom Skill ZIPs
 
 ### Fixed
 - README repository layout and validation commands now match the actual 0.3.0 file structure

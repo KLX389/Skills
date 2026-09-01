@@ -8,15 +8,19 @@ main methodological invariants.
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
 import sys
+import tempfile
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugins" / "idea-maturity"
 SKILL_ROOT = PLUGIN_ROOT / "skills" / "idea-maturity"
 REFERENCE_ROOT = SKILL_ROOT / "reference"
+CLAUDE_ZIP_SCRIPT = ROOT / "scripts" / "build_claude_skill_zip.py"
 
 PRIMARY_REFERENCES = {
     "input-triage.md",
@@ -136,6 +140,26 @@ def main() -> int:
     require("confidence <= assumed" in hypotheses, "test/build candidate rule is explicit", errors)
 
     require("input.raw_statement" in skill_md and "problem.reformulated_from" in skill_md, "solution-free exceptions are explicit", errors)
+
+    require("### Claude App" in readme, "README documents Claude App installation", errors)
+    require("Customize > Skills > + > Upload skill" in readme, "README includes Claude upload path", errors)
+    require(".claude/skills" in readme, "README documents Claude Code project-local install", errors)
+    require(CLAUDE_ZIP_SCRIPT.is_file(), "Claude ZIP build script exists", errors)
+
+    if CLAUDE_ZIP_SCRIPT.is_file():
+        spec = importlib.util.spec_from_file_location("build_claude_skill_zip", CLAUDE_ZIP_SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        assert spec and spec.loader
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output = Path(tmpdir) / "idea-maturity-claude-skill.zip"
+            module.build_zip(output)
+            require(output.is_file(), "Claude ZIP was created", errors)
+            with zipfile.ZipFile(output) as archive:
+                names = set(archive.namelist())
+            require("idea-maturity/SKILL.md" in names, "Claude ZIP contains top-level idea-maturity/SKILL.md", errors)
+            require("idea-maturity/reference/block-intent.md" in names, "Claude ZIP contains references", errors)
+            require(all(name.startswith("idea-maturity/") for name in names), "Claude ZIP has one top-level skill folder", errors)
 
     plugin = validate_json_file(PLUGIN_ROOT / ".codex-plugin" / "plugin.json", errors)
     require(plugin.get("name") == "idea-maturity", "plugin manifest name matches", errors)
